@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="container"></div>
+    <script type="text/babel">
+        var i = 1;
+        function Title() {
+            return <h1>Counter React</h1>;
+        }
+        function Counter(){
+            return <h2>{i}</h2>
+        };
+        function tick(){
+            const  App = (
+                <div>
+                    <Title/>
+                    <Counter />
+                </div>
+            );
+
+                ReactDOM.render(
+                    App,
+                    document.getElementById('root')
+                );
+                i++;
+        }        
+        setInterval(tick, 1000);
+        //JAvascript
+        var j = 1;
+        var body = document.getElementById('container');
+        var h1 =document.createElement("h1");
+        var h2 =document.createElement("h2");
+        
+        function render(){
+            h1.innerHTML = "Counter Js"
+            body.appendChild(h1);
+            h2.innerHTML = j;
+            body.appendChild(h2);
+            j++;
+        }
+        setInterval(render,1000);
+    </script>
+  </body>
+</html>
