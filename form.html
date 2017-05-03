@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Events</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class MyForm extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    valueInput: '',
+                    valueArea: '',
+                    valueSelect: 'coconut'
+                };
+                this.textChange = this.textChange.bind(this);
+                this.areaChange = this.areaChange.bind(this);
+                this.selectChange = this.selectChange.bind(this);
+                this.handleSubmit = this.handleSubmit.bind(this);
+            }
+
+            textChange(event) {
+                this.setState({valueInput: event.target.value});
+            }
+            areaChange(event){
+                this.setState({valueArea: event.target.value});
+            }
+            selectChange(event){
+                this.setState({valueSelect: event.target.value});                
+            }
+
+            handleSubmit(event) {
+                alert('A name was submitted: ' + this.state.valueInput + ' value area:' + this.state.valueArea + ' Select value:' + this.state.valueSelect);
+                event.preventDefault();
+            }
+
+            render() {
+                return (
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                    Name:
+                    <input type="text" value={this.state.valueInput} onChange={this.textChange} />
+                    </label>
+                    <br/>
+                    <label>
+                        Name Area:
+                        <textarea value={this.state.valueArea} onChange={this.areaChange} />
+                    </label>
+                    <br/>
+                    <label>
+                        My Select
+                        <select value={this.state.valueSelect} onChange={this.selectChange}>
+                            <option value="grapefruit">Grapefruit</option>
+                            <option value="lime">Lime</option>
+                            <option value="coconut">Coconut</option>
+                            <option value="mango">Mango</option>
+                        </select>
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
+                );
+            }
+        }
+        ReactDOM.render(
+            <MyForm/>,
+            document.getElementById('root')
+        );
+    </script>
+  </body>
+</html>
